@@ -1,17 +1,25 @@
 #include <iostream>
 #include <vector>
-#include <map>
+#include <set>
 using namespace std;
 
-map<int, vector<int> > idx_map;
 
 bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
+  if(nums.size() < 2 || k == 0) return false;
+
+  int idx = 0;
+  multiset<long> ms;
+
   for(int i = 0; i < nums.size(); i++) {
-    for(int j = i+1; j <= i+k; j++) {
-      if(j >= nums.size()) break;
-      long diff = ((long) nums[i]) - ((long) nums[j]);
-      if(abs(diff) <= t) return true;
+    if(ms.size() > k) {
+      ms.erase(nums[idx++]);
     }
+
+    auto it = ms.lower_bound((long) nums[i] - (long) t);
+    if(it != ms.end() && *it <= ((long) nums[i] + (long)t)) {
+      return true;
+    }
+    ms.insert(nums[i]);
   }
 
   return false;
