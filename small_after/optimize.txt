@@ -1,0 +1,6 @@
+현재 풀이 (2021.04.05)
+- Mergesort를 하면서 순서가 바뀔때마다 Left에 있는 element들에 Count up.
+- Reverse하게 되어 있는 경우, Worst case O(n^2)
+
+최적화 방안
+- Balanced Binary Search Tree에 가장 오른쪽부터 넣으면서 Count 진행.
