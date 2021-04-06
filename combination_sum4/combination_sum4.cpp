@@ -3,9 +3,9 @@
 #include <algorithm>
 using namespace std;
 
-int combinationSum4(vector<int>& nums, int target) {
+unsigned long combinationSum4(vector<int>& nums, int target) {
 	sort(nums.begin(), nums.end());
-	vector<int> count_map(target + 1, 0);
+	vector<unsigned long> count_map(target + 1, 0);
 	count_map[0] = 1;
 
 	for(int i = 0; i < count_map.size(); i++) {
