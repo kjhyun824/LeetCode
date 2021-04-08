@@ -11,41 +11,31 @@ struct ListNode {
 };
 
 ListNode* oddEvenList(ListNode* head) {
-	if(head == nullptr) return nullptr;
+	if(head == nullptr || head->next == nullptr) return head;
 
-	ListNode *odds = nullptr;
-	ListNode *evens = nullptr;
-	ListNode *odd_head = nullptr, *even_head = nullptr;
+	ListNode* curr = head->next;
+	ListNode* updator = head->next;
+	vector<int> even_list;
+	int idx = 2;
 
-	ListNode* curr = head;
-	int idx = 1;
 	do {
 		if(idx % 2 != 0) { // Odd
-			if(odds == nullptr) {
-				odds = new ListNode(curr->val);
-				odd_head = odds;
-			} else {
-				odds->next = new ListNode(curr->val);
-				odds = odds->next;
-			}
+			updator->val = curr->val;
+			updator = updator->next;
 		} else { // Even
-			if(evens == nullptr) {
-				evens = new ListNode(curr->val);
-				even_head = evens;
-			} else {
-				evens->next = new ListNode(curr->val);
-				evens = evens->next;
-			}
+			even_list.push_back(curr->val);
 		}
 
 		idx++;
 		curr = curr->next;
-	} while(curr != nullptr);
+	} while (curr != nullptr);
 
-	if(even_head)
-		odds->next = even_head;
+	for(int i = 0; i < even_list.size(); i++) {
+		updator->val = even_list[i];
+		updator = updator->next;
+	}
 
-	return odd_head;
+	return head;
 }
 
 void printList(ListNode* head) {
@@ -83,6 +73,7 @@ int main() {
 			}
 		}
 
+		head = oddEvenList(head);
 		cout << "Case #" << i+1 << endl;
 		printList(head);
 	}
