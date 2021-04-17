@@ -1,0 +1,4 @@
+현재 구현: 전체 리스트를 스캔하면서 Even 값은 따로 Vector에 저장하고 Odd가 끝나면 Even에 있는 것들 추가.
+
+Space Complexity 줄이기.
+- Linked List의 노드들을 그대로 유지하면서, Head/Even_head를 구분짓고, 홀수번째는 Head에, 짝수번째는 Even_head에 연결.
